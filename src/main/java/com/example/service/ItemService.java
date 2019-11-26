@@ -27,7 +27,7 @@ public class ItemService {
 		List<Item> item3List = new ArrayList<>();
 		
 		for(int i = 1; i < item.size(); i++) {
-			item3List.add(item.get(i));
+			item3List.add(item.get(i - 1));
 			
 			if((i % 3) == 0) {
 				allItemList.add(item3List);
@@ -47,6 +47,24 @@ public class ItemService {
 	 */
 	public List<List<Item>> findAll(){
 		return arrayTable(itemRepository.findAll());
+	}
+	
+	/**
+	 * 商品の曖昧検索のためのサービス.
+	 * @param name
+	 * @return
+	 */
+	public List<List<Item>> searchName(String name){
+		return arrayTable(itemRepository.searchName(name));
+	}
+	
+	/**
+	 * 商品を1件検索するサービス.
+	 * @param id
+	 * @return
+	 */
+	public Item load(Integer id) {
+		return itemRepository.load(id);
 	}
 
 }
